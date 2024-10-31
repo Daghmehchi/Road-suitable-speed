@@ -1,9 +1,6 @@
 !git clone https://github.com/ultralytics/yolov5
-!pip install -r requirements.txt
-!pip install kaggle
-!pip install numpy
+!pip install -r /content/yolov5/requirements.txt
 !python -m pip install --upgrade pip
-!pip install torch
 
 # Api for kaggle.json
 api_token = {
