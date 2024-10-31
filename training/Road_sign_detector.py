@@ -31,4 +31,4 @@ os.chmod('/root/.kaggle/kaggle.json', 600)
 !unzip cardetection.zip
 
 # train order
-!python train.py --img 416 --batch 16 --epochs 20 --data /content/Road-suitable-speed/training/sign_data.yaml --weights yolov5s.pt --cache
+!python /content/yolov5/train.py --img 416 --batch 16 --epochs 30 --data /content/Road-suitable-speed/training/sign_data.yaml --weights yolov5l.pt --cache
