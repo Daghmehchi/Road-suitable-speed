@@ -4,7 +4,7 @@ torch
 roboflow
 ultralytics
 rarfile
-cv2
+opencv-python
 
 
 
