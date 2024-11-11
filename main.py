@@ -238,10 +238,9 @@ from ultralytics import YOLO
 video_path_c = '/content/Road-suitable-speed/output/crop_video.mp4'
 model_path = YOLO('yolov8m.pt')
 
-# بارگذاری مدل YOLOv8 آموزش‌دیده برای تشخیص پلاک
-model = model_path  # بارگذاری مدل
+model = model_path  
 
-# تابعی برای تشخیص پلاک
+# car detection function not plate is just name
 def detect_license_plate(frame):
     results = model.predict(source=frame, save=False, verbose=False)
     boxes = results[0].boxes
@@ -250,7 +249,7 @@ def detect_license_plate(frame):
         confidences = boxes.conf.cpu().numpy()
         max_conf_idx = confidences.argmax()
 
-        # اطلاعات مربوط به بهترین جعبه
+        # best box information
         best_box = boxes[max_conf_idx]
         x1, y1, x2, y2 = map(int, best_box.xyxy[0])
         confidence = best_box.conf.item()
@@ -295,7 +294,7 @@ while cap.isOpened():
 
         curr_position = (best_box.xyxy[0][0].item(), best_box.xyxy[0][1].item())
         if prev_position:
-            # محاسبه فاصله بر اساس تغییرات در محور x
+            # convert pixel change to meter
             distance = curr_position[0] - prev_position[0]
             speed = (distance * 3.6) / (time() - prev_time)
             speed_list.append(speed)
@@ -303,7 +302,7 @@ while cap.isOpened():
             # listing last 5 frame speed
             speed_list.append(speed)
             if len(speed_list) > 5:
-              speed_list.pop(0)  # حذف اولین مقدار در لیست تا فقط پنج مقدار آخر باقی بماند
+              speed_list.pop(0)  
 
             # avrage 5 frame's speed
             average_speed = sum(speed_list) / len(speed_list)
@@ -328,16 +327,16 @@ while cap.isOpened():
         center_coordinates, radius, thickness, color = (150, 200), 50, 8, (0, 0, 255) #circle information
         cv2.circle(frame, center_coordinates, radius, color, thickness)
         text = str(int(adjust_speed(c_speed)))
-        font = cv2.FONT_HERSHEY_SIMPLEX  # فونت
-        font_scale = 2  # اندازه فونت
-        text_color = (255, 255, 255)  # رنگ متن (در اینجا سفید)
+        font = cv2.FONT_HERSHEY_SIMPLEX  
+        font_scale = 2  
+        text_color = (255, 255, 255)  
         text_thickness = 5
         text_size = cv2.getTextSize(text, font, font_scale, text_thickness)[0]
         text_x = center_coordinates[0] - text_size[0] // 2
         text_y = center_coordinates[1] + text_size[1] // 2
         cv2.putText(frame, text, (text_x, text_y), font, font_scale, text_color, text_thickness)
 
-        text_1 = f"Weather and Time and Trafic sign: {filtered_classes[0][0]} , {timeL} , {road_speed}km/h"
+        text_1 = f"Weather , Time , Trafic sign: {filtered_classes[0][0]} , {timeL} , {road_speed}km/h"
         cv2.putText(frame, text_1 , (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
 
     out.write(frame)
