@@ -1,5 +1,5 @@
 from roboflow import Roboflow
-rf = Roboflow(api_key="iybx5q0n2YlNOs0BUS83")
+rf = Roboflow(api_key="**********************")
 project = rf.workspace("carlisence-gpfkw").project("weather_detection-v7zbi")
 version = project.version(1)
 dataset = version.download("folder")
