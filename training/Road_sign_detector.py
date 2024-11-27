@@ -5,7 +5,7 @@
 # Api for kaggle.json
 api_token = {
     "username": "daghmehchi",
-    "key": "204cf422231f7a64709979b248e88822"
+    "key": "**************************"
 }
 
 import json
