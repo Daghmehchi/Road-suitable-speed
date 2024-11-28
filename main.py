@@ -213,6 +213,7 @@ top_rigth = ((width + top_width) // 2, 410)
 bottom_left = (0, height - 80)
 bottom_right = (width, height - 80)
 
+#filterin of video
 vertices = np.array([[top_left, top_rigth, bottom_right, bottom_left]], dtype = np.int32)
 
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
