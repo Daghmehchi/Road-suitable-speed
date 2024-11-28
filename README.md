@@ -1,4 +1,5 @@
 This GitHub repository measures environmental conditions by using YOLO image processing and tells you the safe speed for driving on the road.
+you can run it by copy main.py just in colab
 # Flowchart of process
 ![car_speed](https://github.com/user-attachments/assets/1504c790-326d-416b-a6ed-9c1f748958fe)
 
